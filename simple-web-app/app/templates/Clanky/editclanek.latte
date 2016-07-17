@@ -1,0 +1,31 @@
+{block title}Upravit článek{/block}
+
+{block content}
+{form editClanekForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+		{label nazev /}
+		<div class="input">{input nazev}</div>
+    </div>
+    <div class="pair">
+		{label uvod /}
+		<div class="input">{input uvod}</div>
+    </div>
+    <div class="pair">
+		{label text /}
+		<div class="input">{input text}</div>
+    </div>
+    <div class="pair">
+		{label autor /}
+		<div class="input">{input autor}</div>
+    </div>
+    <br/>
+    <div class="pair">
+		<div class="input">{input addAkce} {input cancel}</div>
+    </div>
+    <br/>
+    <div><i>Tučně označená pole jsou povinná</i></div>
+</div>
+{/form}
+{/block}

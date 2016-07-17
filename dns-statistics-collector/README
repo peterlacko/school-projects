@@ -1,0 +1,45 @@
+projekt: DNS proxy generujici statistiky dotazu
+autor: Peter Lacko
+seznam souboru:
+	dns_stats.cpp
+	dns_stats.hpp
+	Makefile
+	manual.pdf
+	README
+
+Popis:
+Program slouzi na ziskani statistik z DNS dotazu jemu zaslanych.
+
+Preklad a spusteni:
+Pro preklad v systemu freeBSD zadejte "make", v Linuxu je treba
+nalinkovat take knihovnu resolvru "-lresolv".
+Pro spusteni zadejte "dns_stat [parametry]".
+
+parametry:
+    dns_stat (bez parametru)
+        vypise tuhleto napovedu
+
+    -s ip/nazov
+        specifikuje ip adresy/nazvy DNS serverov, na ktere se budou posilat dotazy,
+	je mozne zadat maximalne 3 parametry -s
+
+    -l ip
+        urcuje adresu, na ktere bude program naslouchat, defaultne INADDR_ANY
+
+    -p port
+        port, na kterem bude program naslouchat (defaultne 53)
+
+    -type
+        zobrazi statistiky podle typu dotazu
+
+    -source
+        statistiky podle zdroju (kdo sa kolikrat ptal)
+
+    -destination
+        statistiky podle dotazu (kolikrat se na co ptali)
+
+    -hour
+        zobrazi statistiky za posledni hodinu
+
+    -average
+        prumerne hodnoty za hodinu

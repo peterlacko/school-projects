@@ -1,0 +1,43 @@
+{block title}Přidat školu{/block}
+
+{block content}
+{form addSchoolForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+	{label nazev_skoly /}
+	<div class="input">{input nazev_skoly}</div>
+    </div>
+    <div class="pair">
+	{label adresa_skoly /}
+	<div class="input">{input adresa_skoly}</div>
+    </div>
+    <div class="pair">
+	{label email_skoly /}
+	<div class="input">{input email_skoly}</div>
+    </div>
+    <div class="pair">
+	{label web_skoly /}
+	<div class="input">{input web_skoly}</div>
+    </div>
+    <div class="pair">
+	{label rektor /}
+	<div class="input">{input rektor}</div>
+    </div>
+    <div class="pair">
+	{label zamereni /}
+	<div class="input">{input zamereni}</div>
+    </div>
+    <div class="pair">
+	{label logo_skoly /}
+	<div class="input">{input logo_skoly}</div>
+    </div>
+    <br/>
+    <div class="pair">
+	<div class="input">{input addSchool} {input cancel}</div>
+    </div>
+    <br/>
+    <div><i>Tučně označená pole jsou povinná</i></div>
+</div>
+{/form}
+{/block}

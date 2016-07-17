@@ -1,0 +1,34 @@
+{block title}Oblíbené{/block}
+
+{block content}
+
+<h2>Oblíbené</h2>
+
+<div class="oblibene">
+	
+	<p>
+	{var $something = false}
+	{foreach $skoly as $skola}
+		<a href="{link Skola:detail id=>$skola->Nazev_skoly}">{$skola->Nazev_skoly}</a>
+		<span class="smazat"><a href="{link confirmForm:confirmDeleteOblibene! id=>$skola->ID_oblibene}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></span>
+		<br/>
+		{var $something = true}
+	{/foreach}
+	</p>
+
+	<p>
+	{foreach $fakulty as $fakulta}
+		<a href="{link Fakulta:detail id=>$fakulta->ID_fakulty}">{$fakulta->Nazev_fakulty}</a>
+		<span class="smazat"><a href="{link confirmForm:confirmDeleteOblibene! id=>$fakulta->ID_oblibene}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></span> 
+		<br/>
+		{var $something = true}
+	{/foreach}
+	</p>
+
+	{if $something == false}
+		<p>Momentálně nemáte žádné oblíbené položky.</p>
+	{/if}
+
+</div>
+
+{/block}

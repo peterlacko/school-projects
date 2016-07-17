@@ -1,0 +1,49 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+common:
+	parameters:
+
+	php:
+		date.timezone: Europe/Prague
+		# zlib.output_compression: yes
+
+	nette:
+		application:
+			errorPresenter: Error
+
+		database:
+			dsn: 'mysql:host=hostname;unix_socket=/path/to/socket;dbname=database_name'
+			user: 'username'
+			password: 'password'
+
+		session:
+			autoStart: smart
+			expiration: +14 days
+
+
+	services:
+		authenticator: Poradna\Authenticator
+
+		dodRepository: Poradna\DODRepository
+		akceRepository: Poradna\AkceRepository
+		fakultaRepository: Poradna\FakultaRepository
+		oborRepository: Poradna\OborRepository
+		predmetRepository: Poradna\PredmetRepository
+		skolaRepository: Poradna\SkolaRepository
+		zamereniRepository: Poradna\ZamereniRepository
+		userRepository: Poradna\UserRepository
+		citatyRepository: Poradna\CitatyRepository
+		clankyRepository: Poradna\ClankyRepository
+		oblibeneRepository: Poradna\OblibeneRepository
+
+
+	factories:
+
+
+production < common:
+
+development < common:

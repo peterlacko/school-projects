@@ -1,0 +1,35 @@
+{block title}{$detailFakulty->Nazev_fakulty}: Přidat předmět{/block}
+
+{block content}
+{form addPredmetForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+	{label nazev_predmetu /}
+	<div class="input">{input nazev_predmetu}</div>
+    </div>
+    <div class="pair">
+	{label zkratka_predmetu /}
+	<div class="input">{input zkratka_predmetu}</div>
+    </div>
+    <div class="pair">
+	{label kredity /}
+	<div class="input">{input kredity}</div>
+    </div>
+    <div class="pair">
+	{label ukonceni /}
+	<div class="input">{input ukonceni}</div>
+    </div>
+    <div class="pair">
+	{label garant /}
+	<div class="input">{input garant}</div>
+    </div>
+    <br/>
+    <div class="pair">
+	<div class="input">{input addPredmet} {input cancel}</div>
+    </div>
+    <br/>
+    <div><i>Tučně označená pole jsou povinná</i></div>
+</div>
+{/form}
+{/block}

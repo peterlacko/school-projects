@@ -1,0 +1,43 @@
+{block title}Přidat fakultu{/block}
+
+{block content}
+{form editFakultaForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+	{label nazev_fakulty /}
+	<div class="input">{input nazev_fakulty}</div>
+    </div>
+    <div class="pair">
+	{label adresa_fakulty /}
+	<div class="input">{input adresa_fakulty}</div>
+    </div>
+    <div class="pair">
+	{label email_fakulty /}
+	<div class="input">{input email_fakulty}</div>
+    </div>
+    <div class="pair">
+	{label web_fakulty /}
+	<div class="input">{input web_fakulty}</div>
+    </div>
+    <div class="pair">
+	{label dekan /}
+	<div class="input">{input dekan}</div>
+    </div>
+    <div class="pair">
+	{label skola /}
+	<div class="input">{input skola}</div>
+    </div>
+    <div class="pair">
+	{label logo_fakulty/}
+	<div class="input">{input logo_fakulty}</div>
+    </div>
+    <br/>
+    <div class="pair">
+	<div class="input">{input addFakulta} {input cancel}</div>
+    </div>
+    <br/>
+    <div><i>Tučně označená pole jsou povinná</i></div>
+</div>
+{/form}
+{/block}

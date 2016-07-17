@@ -1,0 +1,26 @@
+{block title}Změna profilu{/block}
+
+{block content}
+
+{form editUserForm}
+<div class="password-form"> 
+    {control $form errors}
+
+    <div class="pair">
+        {label fullname /}
+        <div class="input">{input fullname}</div>
+    </div>
+    <div class="pair">
+        {label username /}
+        <div class="input">{input username}</div>
+    </div>
+	<div class="pair" {if !$user->isInRole('admin')}style="display: none"{/if}>
+		{label role /}
+		<div class="input">{input role}</div>
+	</div>
+    <div class="pair">
+        <div class="input">{input edit} {input cancel}</div>
+    </div>
+</div>
+{/form}
+{/block}

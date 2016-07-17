@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Poradna | {block #title}Page{/block}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link href="{$basePath}/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/cufon-yui.js"></script>
+	<script type="text/javascript" src="js/arial.js"></script>
+	<script type="text/javascript" src="js/cuf_run.js"></script>
+	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+	<script src="{$basePath}/js/netteForms.js"></script>
+	{block #head}{/block}
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="logo">
+        <h1><a href="{link Homepage:}"><span>Poradna</span> pro uchazeče o VŠ<br />
+          <small>Hloupost se fackováním nedá vyléčit.</small></a></h1>
+      </div>
+	<div id="login">
+	<nav role="navigation">
+	    <h1 onclick = "void(0);"></h1>
+	    <ol>
+		<li><div id="prihlas">
+		    {if $user->isLoggedIn()}
+				Přihlášen uživatel:<br/>
+				<span class="user">{$user->getIdentity()->username}&nbsp;&nbsp;|&nbsp;&nbsp;{$user->getIdentity()->fullname}</span><br/>
+				<a href="{link User:}"><b>Profil</b></a><br/>
+			    <a n:href="signOut!" style="float:right"><span>Odhlásit se</span></a>
+			{else}
+			{form signInForm}
+			    <div class="sign-in-form">
+				{control $form errors}
+
+				<div class="pair">
+				    {label username /}
+				    <div class="input">{input username}</div>
+				</div>
+				<div class="pair">
+				    {label password /}
+				    <div class="input">{input password}</div>
+				</div>
+				<div class="pair">
+				    <div class="input">{input permanent}{label permanent /}</div>
+				</div>
+				<div class="pair">
+				    <div class="input" style="float: left;">{input login}</div>
+					<div style="float: right;"><a href="{link Register:}">Registrovat</a></div>
+				</div>
+			    </div>
+			{/form}
+			{/if}
+		</div></li>
+	    </ol>
+	</nav>
+	</div>
+	<div class="clr"></div>
+      <div class="menu">
+        <ul>
+          <li><a href="{link Homepage:}" {ifCurrent Homepage:}class="active"{/ifCurrent}><span>Domů</span></a></li>
+          <li><a href="{link Clanky:}" {ifCurrent Clanky:}class="active"{/ifCurrent}><span>Články</span></a></li>
+          <li><a href="{link Vyber:}" {ifCurrent Vyber:}class="active"{/ifCurrent}><span>Výběr školy</span></a></li>
+          <li><a href="{link About:}" {ifCurrent About:}class="active"{/ifCurrent}><span>O webu</span></a></li>
+          <li><a href="{link Contact:}" {ifCurrent Contact:}class="active"{/ifCurrent}><span>Kontakt</span></a></li>
+        </ul>
+      </div>
+      <div class="search">
+		{form quickSearchForm}
+		{control $form errors}
+		<div>{input quick_search}{input search}</div>
+		{/form}
+      </div>
+      <div class="clr"></div>
+    </div>
+    <!--<div class="headert_text_resize"> <img src="{$basePath}/css/images/img_main.jpg" alt="" width="970" height="338" /> </div>-->
+    <div class="clr"></div>
+  </div>
+  <div class="body">
+    <div class="body_resize">
+      <div class="left">
+        <h2>Menu</h2>
+        <ul>
+          <li><a href="{link Skola:}">Školy</a></li>
+          <li><a href="{link DOD:}">Dny otevřených dvěří</a></li>
+		  <li><a href="{link Akce:}">Akce</a></li>
+		  <li class="fav"><a href="{link Search:}"><img src="{$basePath}/images/icons/find32.png"/>Vyhledat</a></li>
+			{if $user->isInRole('user')}
+				<li class="fav"><a href="{link Oblibene:}"><img alt="Oblíbené" src="{$basePath}/images/icons/fav32.png"/>Oblíbené</a></li>
+			{/if}
+			{if $user->isInRole('admin')}
+				<li class="fav"><a href="{link User:modifyuser}"><img alt="Správa uživatelů" src="{$basePath}/images/icons/user32.png"/>Správa uživatelů</a></li>
+			{/if}
+			
+			
+        </ul>
+        <h2>Novinky</h2>
+        <ul class="sponsors">
+          <li class="sponsors"><a href="{link Homepage:}">Spuštění Poradny</a><br />
+            Dnes jsme oficiálně spustili náš informační systém</li>
+          <li class="sponsors"><a href="{link Skola:}">První záznamy</a><br />
+            Databáze se začíná velice rychle plnit údaji o školách</li>
+        </ul>
+	<h2>Náhodný citát</h2>
+        <ul class="sponsors">
+          <li class="sponsors">
+	    {$citat->Citat}<br />
+	    <div class="quoter">{$citat->Autor}</div>
+	  </li>
+        </ul>
+      </div>
+      <div class="right">
+	{foreach $flashes as $flash}
+	<br/>
+	<div class="flash {$flash->type}">{$flash->message}</div>
+	{/foreach}
+	{widget confirmForm}
+        {include #content}
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer_resize">
+      <p class="lf">Copyright &copy; <a href="{link Homepage:}">Poradna</a>. Všechna práva vyhrazena</p>
+      <div class="clr"></div>
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>
+</body>
+</html>

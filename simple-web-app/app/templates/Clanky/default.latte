@@ -1,0 +1,27 @@
+{block title}Články{/block}
+
+{block content}
+
+{if $user->isInRole('admin')}
+	<div class="pridatClanek" style="float:none"><a href="{link Clanky:addclanek}"><img src="{$basePath}/images/icons/add24.png">Přidat článek</a></div>
+{/if}
+
+{foreach $clanky as $clanek}
+<h2>{$clanek->Nazev}
+	{if $user->isInRole('admin')}
+		<span class="smazat"><a href="{link confirmForm:confirmDeleteClanek! id=>$clanek->ID_clanku}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></span>
+		<span class="upravit"><a href="{link Clanky:editclanek id_clanku=>$clanek->ID_clanku}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit"></a></span>
+	{/if}		
+	<br />
+	<span> {$clanek->Datum|date:'%d.%m.%Y'} | Autor: {$clanek->Autor}</span>
+</h2>
+<div class="clr"></div>
+
+<p>
+{!$clanek->Uvod}
+</p>
+<p> <a href="{link Clanky:detail $clanek->ID_clanku}">&lt;&lt;&lt;Celý článek&gt;&gt;&gt;</a><br />
+</p>
+{/foreach}
+
+{/block}

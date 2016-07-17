@@ -1,0 +1,27 @@
+{block title}Přidat zaměření{/block}
+
+{block content}
+{form addZamereniForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+	{label nazev_zamereni /}
+	<div class="input">{input nazev_zamereni}</div>
+    </div>
+    <div class="pair">
+	{label popis_zamereni /}
+	<div class="input">{input popis_zamereni}</div>
+    </div>
+    <div class="pair">
+	{label uplatneni /}
+	<div class="input">{input uplatneni}</div>
+    </div>
+    <br/>
+    <div class="pair">
+	<div class="input">{input addZamereni} {input cancel}</div>
+    </div>
+    <br/>
+    <div><i>Tučně označená pole jsou povinná</i></div>
+</div>
+{/form}
+{/block}

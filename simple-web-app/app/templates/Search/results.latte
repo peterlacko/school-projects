@@ -1,0 +1,70 @@
+{block title}Výsledky hledání{/block}
+
+{block content}
+{if $flags['skola']}
+    <h3>Školy:</h3>
+    {if $skoly}
+	{foreach $skoly as $skola}
+	    <a href="{link Skola:detail id=>$skola->Nazev_skoly}"><u>{$skola->Nazev_skoly},</u></a> {$skola->Adresa_skoly}<br/>
+	{/foreach}
+    {else}
+	Vašemu dotazu neodpovídá žádná škola
+    {/if}
+{/if}
+
+{if $flags['fakulta']}
+    <h3>Fakulty:</h3>
+    {if $fakulty}
+	{foreach $fakulty as $fakulta}
+	    <a href="{link Fakulta:detail id=>$fakulta->ID_fakulty}"><u>{$fakulta->Nazev_fakulty}, {$fakulta->Adresa_fakulty}</u></a><br/>
+	{/foreach}
+    {else}
+	Vašemu dotazu neodpovídá žádná fakulta
+    {/if}
+{/if}
+
+{if $flags['obor']}
+    <h3>Obory:</h3>
+    {if $obory}
+	{foreach $obory as $obor}
+	    <b>{$obor->Nazev_oboru}</b> na <a href="{link Fakulta:detail id=>$obor->ID_fakulty}"><u>{$obor->Nazev_fakulty}</u></a><br/>
+	{/foreach}
+    {else}
+	Vašemu dotazu neodpovídá žádný obor
+    {/if}
+{/if}
+
+{if $flags['predmet']}
+    <h3>Předměty:</h3>
+    {if $predmety}
+	{foreach $predmety as $predmet}
+	    <b>{$predmet->Nazev_predmetu}</b> na <a href="{link Fakulta:detail id=>$predmet->ID_fakulty}"><u>{$predmet->Nazev_fakulty}</u></a><br/>
+	{/foreach}
+    {else}
+	Vašemu dotazu neodpovídá žádný předmět
+    {/if}
+{/if}
+
+{if $flags['akce']}
+    <h3>Akce:</h3>
+    {if $akce}
+	{foreach $akce as $akca}
+	    <b>{$akca->Titulek}</b> na <a href="{link Fakulta:detail id=>$akca->ID_fakulty}"><u>{$akca->Nazev_fakulty}</u></a><br/>
+	{/foreach}
+    {else}
+	Vašemu dotazu neodpovídá žádná akce
+    {/if}
+{/if}
+
+{if $flags['dod']}
+    <h3>DOD:</h3>
+    {if $dods}
+	{foreach $dods as $dod}
+	    <b>{$dod->Zacatek}</b> na <a href="{link Fakulta:detail id=>$dod->ID_fakulty}"><u>{$dod->Nazev_fakulty}</u></a><br/>
+	{/foreach}
+    {else}
+	Vašemu dotazu neodpovídá žádný DOD
+    {/if}
+{/if}
+
+{/block}

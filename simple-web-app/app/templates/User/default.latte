@@ -1,0 +1,11 @@
+{block title}Profil{/block}
+
+{block content}
+<h2>Profil uživatele {$user->getIdentity()->username}&nbsp;&nbsp;|&nbsp;&nbsp;{$user->getIdentity()->fullname}</h2>
+<h3>Možnosti:</h3>
+<div> 
+	<a href="{link User:setpassword}">Změna hesla</a><br />
+	<a href="{link User:edituser user_id => $user->getIdentity()->user_id}">Změna profilu</a> <br />
+	<a n:href="signOut!">Odhlásit se</a>
+</div>
+{/block}

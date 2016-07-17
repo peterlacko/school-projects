@@ -1,0 +1,25 @@
+{block title}Fakulta{/block}
+
+{block content}
+
+<h2>Seznam fakult</h2>
+<table>
+    <thead>
+    <tr>
+	<th>Nazev fakulty</th>
+	<th>Adresa fakulty</th>
+	<th>Skola</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach $facultiesNames as $facultyName}
+    <tr>
+	<td>{$facultyName->Nazev_fakulty}</td>
+	<td>{$facultyName->Adresa_fakulty}</td>
+	<td>{$facultyName->Nazev_skoly}</td>
+    </tr>
+    {/foreach}
+    </tbody>
+</table>
+
+{/block}

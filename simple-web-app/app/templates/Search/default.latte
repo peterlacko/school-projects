@@ -1,0 +1,46 @@
+{block title}Vyhledávání{/block}
+
+{block content}
+{form searchForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+	{label search_phrase /}
+	<div class="input">{input search_phrase}</div>
+    </div>
+	<div><b>Hledat v:</b></div>
+	<table>
+		<tr>
+			<td>{label skola /}</td>
+			<td>{input skola}</td>
+		</tr>
+		<tr>
+			<td>{label fakulta /}</td>
+			<td>{input fakulta}</td>
+		</tr>
+		<tr>
+			<td>{label obor /}</td>
+			<td>{input obor}</td>
+		</tr>
+		<tr>
+			<td>{label predmet /}</td>
+			<td>{input predmet}</td>
+		</tr>
+		<tr>
+			<td>{label akce /}</td>
+			<td>{input akce}</td>
+		</tr>
+		<tr>
+			<td>{label dod /}</td>
+			<td>{input dod}</td>
+		</tr>
+		
+	</table>
+    <br/>
+    <div class="pair">
+	<div class="input">{input search} {input cancel}</div>
+    </div>
+</div>
+{/form}
+{/block}
+

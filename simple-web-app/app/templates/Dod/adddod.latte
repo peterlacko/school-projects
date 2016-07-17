@@ -1,0 +1,35 @@
+{block title}{$detailFakulty->Nazev_fakulty}: Přidat Den otevřených dveří{/block}
+
+{block content}
+{form addDodForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+	{label zacatek /}
+	<div class="input">{input zacatek}</div>
+    </div>
+    <div class="pair">
+	{label konec /}
+	<div class="input">{input konec}</div>
+    </div>
+    <div class="pair">
+	{label podrobnosti /}
+	<div class="input">{input podrobnosti}</div>
+    </div>
+    <br/>
+    <div class="pair">
+	<div class="input">{input addDod} {input cancel}</div>
+    </div>
+    <br/>
+    <div><i>Tučně označená pole jsou povinná</i></div><br />
+    <div><i>Datum zadávejte ve formátu 'YYYY-MM-DD hh-mm-ss' bez uvozovek, přičemž <br/>
+		YYYY je rok<br/>
+		MM měsíc<br/>
+		DD den<br/>
+		hh hodiny<br/>
+		mm minuty<br/>
+		ss sekundy<br/>
+	</i></div>
+</div>
+{/form}
+{/block}

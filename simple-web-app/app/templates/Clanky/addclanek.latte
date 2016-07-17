@@ -1,0 +1,33 @@
+{block title}Přidat článek{/block}
+
+{block content}
+{form addClanekForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+	{label nazev /}
+	<div class="input">{input nazev}</div>
+    </div>
+    <div class="pair">
+	{label uvod /}
+	<div class="input">{input uvod}</div>
+    </div>
+    <div class="pair">
+	{label text /}
+	<div class="input">{input text}</div>
+    </div>
+	<div><i>Pro formátování textu můžete použít základní HTML tagy jako &lt;h1&gt; až &lt;h3&gt (pro standardní nadpisy doporučen &lt;h3&gt),<br />
+	&lt;b&gt, &lt;i&gt, &lt;u&gt, &lt;p&gt, &lt;ul&gt, &lt;ol&gt, &lt;li&gt, &lt;a&gt a &lt;br&gt.</i></div>
+    <div class="pair">
+	{label autor /}
+	<div class="input">{input autor}</div>
+    </div>
+    <br/>
+    <div class="pair">
+	<div class="input">{input addAkce} {input cancel}</div>
+    </div>
+    <br/>
+    <div><i>Tučně označená pole jsou povinná</i></div>
+</div>
+{/form}
+{/block}

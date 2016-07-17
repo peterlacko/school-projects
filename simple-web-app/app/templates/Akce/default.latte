@@ -1,0 +1,26 @@
+{block title}Akce{/block}
+
+{block content}
+
+<h2>Akce</h2>
+{if $user->isInRole('admin')}
+	<div class="pridat"><a href="{link Akce:addakce}"><img src="{$basePath}/images/icons/add24.png">Přidat akci</a></div>
+	<br/>
+	<br/>
+{/if}
+
+<div>
+{foreach $akce as $a}
+    <span class="datetime">{$a->Kdy|date:'%d.%m.%Y - %H:%M'}</span><br/>
+	<a href="{link Fakulta:detail $a->ID_fakulty}">{$a->Nazev_fakulty}</a> - <b>{$a->Titulek}</b>
+	{if $user->isInRole('admin')}
+		<span class="smazat"><a href="{link confirmForm:confirmDeleteAkce! id=>$a->ID_akce}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></span>
+		<span class="upravit"><a href="{link Akce:editakce id_akce=>$a->ID_akce}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit"></a></span>
+	{/if}
+	<br/>
+	{$a->Text}
+	<br/><br/>
+{/foreach}
+</div>
+
+{/block}

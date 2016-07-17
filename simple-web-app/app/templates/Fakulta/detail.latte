@@ -1,0 +1,159 @@
+{block title}Detail fakulty{/block}
+
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/styleList.css" type="text/css" />
+{/block}
+
+{block content}
+<div id="fakultaHlavicka">
+	<?php
+	$src = $baseUri.'/images/logos/'.$detailFakulty->ID_fakulty.'.jpg';
+	$file = @file_get_contents($src);
+		if ($file === false)
+			echo '<img src="'.$baseUri.'/images/logos/notFound.jpg" id="logo"/>';
+		else
+			echo '<img src="'.$src.'" id="logo"/>';
+	?>
+	
+	<div><h2>{$detailFakulty->Nazev_fakulty}</h2></div>
+
+	<div class="address">
+		{$detailFakulty->Adresa_fakulty}<br/>
+		<a href="mailto:{$detailFakulty->Email_fakulty}">{$detailFakulty->Email_fakulty}</a><br/>
+		<a href="http://{$detailFakulty->Web_fakulty}" target="_blank">{$detailFakulty->Web_fakulty}</a>
+	</div>
+</div>
+
+<h3>Dny otevřených dveří</h3>
+<div class="dod">
+{var $dodExist = false}
+{foreach $dod as $d}
+	{var $dodExist = true}
+	Od <span class="datetime">{$d->Zacatek|date:'%d.%m.%Y - %H:%M'}</span>
+	do <span class="datetime">{$d->Konec|date:'%d.%m.%Y - %H:%M'}</span>&nbsp;-&nbsp;
+	{$d->Podrobnosti}
+	{if $user->isInRole('admin')}
+		<span class="smazat"><a href="{link confirmForm:confirmDeleteDod! id=>$d->ID_DOD}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!" style="margin:0"></a></span>
+		<span class="upravit"><a href="{link Dod:editdod id_fakulty=>$detailFakulty->ID_fakulty, id_dod=>$d->ID_DOD}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit" style="margin:0"></a></span>
+	{/if}
+	<br/>
+{/foreach}
+{if $dodExist == false}
+    Momentálně nejsou naplánovány žádné dny otevřených dvěří
+{/if}
+</div>
+
+<h3>Akce</h3>
+<div class="dod">
+{var $akceExist = false}
+{foreach $akce as $a}
+	{var $akceExist = true}
+	Dne <span class="datetime">{$a->Kdy|date:'%d.%m.%Y - %H:%M'}</span>&nbsp;-&nbsp;
+	<b>{$a->Titulek}</b>
+	{if $user->isInRole('admin')}
+		<span class="smazat"><a href="{link confirmForm:confirmDeleteAkce! id=>$a->ID_akce}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></span>
+		<span class="upravit"><a href="{link Akce:editakce id_akce=>$a->ID_akce}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit"></a></span>
+	{/if}
+	<br/>
+	{$a->Text}
+	<br/>
+{/foreach}
+{if $akceExist == false}
+    Momentálně nejsou naplánovány žádné akce
+{/if}
+</div>
+
+<div id="detailLinks">
+	{if $user->isInRole('user')}
+		{if $favId != false}
+			<div><a href="{link confirmForm:confirmDeleteOblibene! id=>$favId}"><img src="{$basePath}/images/icons/fav24.png">Odebrat z oblíbených</a></div>
+		{else}
+			<div><a n:href="addFav!"><img src="{$basePath}/images/icons/fav24.png">Přidat do oblíbených</a></div>
+		{/if}
+	{/if}
+
+	{if $user->isInRole('admin')}
+		<div><a href="{link Fakulta:addobor, $detailFakulty->ID_fakulty}"><img src="{$basePath}/images/icons/add24.png">Přidat obor</a></div>
+		<div><a href="{link Fakulta:addpredmet, $detailFakulty->ID_fakulty}"><img src="{$basePath}/images/icons/add24.png">Přidat předmět</a></div>
+		<div><a href="{link Dod:adddod, $detailFakulty->ID_fakulty}"><img src="{$basePath}/images/icons/add24.png">Přidat DOD</a></div>
+		
+		<div><a href="{link confirmForm:confirmDeleteFakulta! id=> $detailFakulty->ID_fakulty, nazev=>$detailFakulty->Nazev_fakulty}"><img src="{$basePath}/images/icons/delete24.png">Smazat fakultu</a></div>
+		<div><a href="{link Fakulta:editfakulta id_fakulty=>$detailFakulty->ID_fakulty}"><img src="{$basePath}/images/icons/edit24.png">Upravit fakultu</a></div>		
+	{/if}
+</div>
+
+<div id="accWrapper">
+    <div id="options">
+	<a href="javascript:parentAccordion.pr(1)">Rozbalit vše</a> | <a href="javascript:parentAccordion.pr(-1)">Sbalit vše</a>
+    </div>
+    <ul class="acc" id="acc">
+	<li>
+	<h3>Obory</h3>
+	<div class="acc-section">
+	    <div class="acc-content">
+		<ul class="acc" id="nested">
+		    {foreach $obory as $obor}
+		    <li>
+			<h3>{$obor->Nazev_oboru}
+				{if $user->isInRole('admin')}
+					<span class="smazat"><a href="{link confirmForm:confirmDeleteObor! id=>$obor->ID_oboru, nazev=>$obor->Nazev_oboru}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></span>
+					<span class="upravit"><a href="{link Fakulta:editobor id_fakulty=>$detailFakulty->ID_fakulty, id_oboru=>$obor->ID_oboru}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit"></a></span>
+				{/if}
+			</h3>
+			<div class="acc-section">
+			    <div class="acc-content">
+			    {$obor->Popis}<br/><br/>
+			    Forma studia: {$obor->Forma_studia}<br/>
+			    Získaný titul: {$obor->Titul}<br/>
+			    Délka studia: {$obor->Delka_studia}<br/>
+			    Zakončení: {$obor->Zakonceni}
+			    </div>
+			</div>
+		    </li>
+		    {/foreach}
+		</ul>
+	    </div>
+	</div>
+	</li>
+	<li>
+	<h3 class="obory_predmety">Předměty</h3>
+	<div class="acc-section">
+	    <div class="acc-content">
+		<ul class="acc" id="nested2">
+		    {foreach $predmety as $predmet}
+		    <li>
+		    <h3>{$predmet->Zkratka_predmetu}, {$predmet->Nazev_predmetu}
+				{if $user->isInRole('admin')}
+					<span class="smazat"><a href="{link confirmForm:confirmDeletePredmet! id=>$predmet->ID_predmetu, nazev=>$predmet->Nazev_predmetu}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></span>
+					<span class="upravit"><a href="{link Fakulta:editpredmet id_predmetu=>$predmet->ID_predmetu, id_fakulty=>$detailFakulty->ID_fakulty}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit"></a></span>
+				{/if}
+			</h3>
+		    <div class="acc-section">
+			<div class="acc-content">
+			    Garant: {$predmet->Garant}<br />
+			    Počet kreditů: {$predmet->Kredity}<br />
+			    Zakončení: {$predmet->Ukonceni}
+			</div>
+		    </div>
+		    </li>
+		    {/foreach}
+		</ul>
+	    </div>
+	</div>
+	</li>
+    </ul>
+</div>
+
+
+<script type="text/javascript" src="{$basePath}/js/TinyAccordion.js"></script>
+
+<script type="text/javascript">
+
+var parentAccordion=new TINY.accordion.slider("parentAccordion");
+parentAccordion.init("acc","h3",0,0);
+
+var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
+nestedAccordion.init("nested2","h3",1,-1,"acc-selected");
+
+</script>
+{/block}

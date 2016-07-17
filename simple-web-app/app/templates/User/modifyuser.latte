@@ -1,0 +1,33 @@
+{block title}Správa uživatelu{/block}
+
+{block content}
+
+<h2>Správa uživatelských účtů</h2>
+
+<div>
+	<table class="userTable">
+		<tr>
+			<th>Login</th>
+			<th>Jméno</th>
+			<th>Admin?</th>
+		</tr>
+		{foreach $users as $u}
+			<tr>
+				<td>{$u->username}</td>
+				<td>{$u->fullname}</td>
+				<td>
+					{if $u->role == "admin"}
+						ANO
+					{else}
+						NE
+					{/if}
+				</td>
+				<td><a href="{link User:edituser user_id => $u->user_id}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit"></a></td>
+				{if $user->getIdentity()->user_id != $u->user_id}
+					<td><a href="{link confirmForm:confirmDeleteUser! id=>$u->user_id, username=>$u->username}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></td>
+				{/if}
+			</tr>
+		{/foreach}
+	</table>
+</div>
+{/block}

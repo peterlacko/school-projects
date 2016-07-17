@@ -1,0 +1,35 @@
+{block title}Úvodní stránka{/block}
+
+{block content}
+<h2>Rychlé odkazy</h2>
+<div class="quickLinks">
+	{foreach $zamereni as $zam}
+		<a href="{link Skola:default filtr => $zam->Nazev_zamereni}">{$zam->Nazev_zamereni} zaměření
+		<span>&nbsp;&nbsp;|&nbsp;&nbsp;{$zam->Popis_zamereni}</span></a>
+		{if $user->isInRole('admin')}
+			<span class="smazat"><a href="{link confirmForm:confirmDeleteZamereni! nazev_zamereni=>$zam->Nazev_zamereni}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!" style="margin:0"></a></span>
+			<span class="upravit"><a href="{link Skola:editzamereni nazev_zamereni=>$zam->Nazev_zamereni}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit" style="margin:0"></a></span>
+		{/if}
+		<br/>
+	{/foreach}
+</div>
+
+{if $user->isInRole('admin')}
+	<div class="pridat" style="float:none"><a href="{link Skola:addzamereni}"><img src="{$basePath}/images/icons/add24.png">Přidat zaměření</a></div>
+{/if}
+
+<h2>Úvodní info<br />
+<span> 1.11.2012 | Autor: admin</span> </h2>
+<img src="{$basePath}/css/images/img_1.jpg" alt="" width="585" height="156" />
+<div class="clr"></div>
+<p>
+	<b>Vítáme Vás na novém portálu Poradna pro uchazeče o vysokou školu</b>
+</p>
+
+<p>
+	Tento informační systém by měl sloužit jako poradce pro budoucí maturanty, kteří stále nevědí jakou vybrat vysokou školu, konkrétní fakultu a obor. 
+	Měl by uchazeči poskytnout ucelený přehled o vysokých školách v České Republice a přehledně zobrazit jejich fakulty a další podrobné a aktuální informace o nich. 
+	Dále jsou zde publikovány články obecného charakteru s radami při výběru vysoké školy, tipy pro přijímačky nebo jen radami pro odreagování.
+</p>
+
+{/block}

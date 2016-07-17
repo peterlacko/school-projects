@@ -1,0 +1,39 @@
+{block title}Editovat akci{/block}
+
+{block content}
+{form editAkceForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+	{label titulek /}
+	<div class="input">{input titulek}</div>
+    </div>
+    <div class="pair">
+	{label datum /}
+	<div class="input">{input datum}</div>
+    </div>
+    <div class="pair">
+	{label fakulta /}
+	<div class="input">{input fakulta}</div>
+    </div>
+    <div class="pair">
+	{label popis /}
+	<div class="input">{input popis}</div>
+    </div>
+    <br/>
+    <div class="pair">
+	<div class="input">{input addAkce} {input cancel}</div>
+    </div>
+    <br/>
+    <div><i>Tučně označená pole jsou povinná</i></div><br />
+    <div><i>Datum zadávejte ve formátu 'YYYY-MM-DD hh-mm-ss' bez uvozovek, přičemž <br/>
+		YYYY je rok<br/>
+		MM měsíc<br/>
+		DD den<br/>
+		hh hodiny<br/>
+		mm minuty<br/>
+		ss sekundy<br/>
+	</i></div>
+</div>
+{/form}
+{/block}

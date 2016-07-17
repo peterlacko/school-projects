@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf8"/>
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+
+<h1>Poradna</h1>
+
+<dl>
+	<dt>Autoři</dt>
+	<dd>Petr Holubec
+	    <a href="mailto:xautor01@stud.fit.vutbr.cz">xholub26@stud.fit.vutbr.cz</a> -
+		uživatelské rozhraní, databáze
+	</dd>
+	<dd>Peter Lacko
+	    <a href="mailto:xautor02@stud.fit.vutbr.cz">xlacko06@stud.fit.vutbr.cz</a> -
+		práce s daty, správa uživatelů
+	</dd>
+	<dt>URL aplikace</dt>
+	<dd><a href="http://www.stud.fit.vutbr.cz/~xlacko06/IIS">http://www.stud.fit.vutbr.cz/~xlacko06/iis/www</a></dd>
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<table>
+<tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
+<tr><td>user</td><td>useruser</td><td>Registrovaný uživatel</td></tr>
+<tr><td>lojza</td><td>lojza</td><td>Registrovaný uživatel</td></tr>
+</table>
+
+<h2>Implementace</h2>
+<p>Informační systém Poradna je založen na open-source frameworku <b>Nette</b>. Nejen díky tomu je navržen na softwarové architektuře <b>MVC</b> (Model-view-controller).
+Uživatelské rozhraní IS je implementováno v <b>XHTML</b> a stylováno pomocí <b>CSS</b>. Okrajově je využito JavaScriptu. Řídící logika je implementována v <b>PHP</b>.
+V uživatelském rozhraní je místo vkládání PHP kódu s výhodou využíváno maker nabízených Nette frameworkem. Databázový model je implementován na systému <b>MySQL</b>.</p>
+
+<p>Jednotlivé případy užití znázorněné v use case diagramu jsou implementovány ve složce <b>app/presenters</b> vždy v patřičném souboru podle toho, čeho se týkají.</p>
+
+<p>Do databáze byly oproti původnímu návrhu přidány tabulky nutné pro chod IS (např. tabulka pro uložení uživatelů) nebo rozšiřující jeho funkce (např. tabulka obsahující články).
+Jediná změna původního návrhu je ve změně závislosti <b>dočasného údaje</b>, který nyní závisí na <b>fakultě</b> nikoliv na oboru.
+Tato tabulka byla pro snažší manipulaci přejmenována na <b>akce</b>.</p>
+
+
+<h2>Instalace</h2>
+Softwarové požadavky:
+<ul>
+	<li>PHP verze 5.3 a vyšší</li>
+	<li>web server Apache (testováno na verzi 2.2)</li>
+	<li>databázový server MySQL (testováno na verzi 5.5.28 a 5.0.95)</li>
+	<li>detailnější požadavky pro běh Nette Framewoku je možné nalézt na <a href="http://doc.nette.org/cs/requirements" targer="_blank">http://doc.nette.org/cs/requirements</a></li>
+</ul>
+<br />
+Popis instalace a nastavení připojení k databázi:
+<ul>
+	<li>odevzdaný archiv rozbalte do složky, kam chcete umístnit IS, např. <code>IIS/</code></li>
+	<li>stáhněte si framework Nette z <a href="http://files.nette.org/releases/2.0/NetteFramework-2.0.6-PHP5.3.zip">http://files.nette.org/releases/2.0/NetteFramework-2.0.6-PHP5.3.zip</a></li>
+	<li>archiv rozbalte a samotnou složku <code>Nette</code> zkopírujte do <code>IIS/libs/</code></li>
+	<li>v <code>IIS/</code> dále vytvořte složky <code>log</code> a <code>temp</code> a nastavte jim práva <code>o+rwx</code></li>
+	<li>nad Vámi vybranou MySQL databází spusťte skript uložený v <code>IIS/sql/</code></li>
+	<li>v souboru <code>IIS/app/config/config.neon</code> nastavte v sekci <code>common:nette:database</code> parametry pro pro připojení k databázi</li>
+	<li>pokud vše proběhlo úspěšne, IS poradna je přístupný pod adresou <code>http://domena/IIS/www</code></li>
+</ul>
+
+<h2>Známé problémy</h2>
+<p>Podle zadání by mělo být vše implementováno a plně funkční. Vložený vzorek dat je možná menší, ale více méně dostačující.<br />
+Role času pro mazání starých akcí (dočasných údajů) by se v tomto případě řešila například přes softwarový deamon Cron.</p><br />
+
+</body>
+</html>

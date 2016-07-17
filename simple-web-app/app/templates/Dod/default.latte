@@ -1,0 +1,18 @@
+{block title}Dny otevřených dvěří{/block}
+
+{block content}
+
+<h2>Dny otevřených dveří</h2>
+
+<div>
+{foreach $tasks as $task}
+    Od <span class="datetime">{$task->Zacatek|date:'%d.%m.%Y - %H:%M'}</span> do <span class="datetime">{$task->Konec|date:'%d.%m.%Y - %H:%M'}</span><br/>
+	<a href="{link Fakulta:detail $task->ID_fakulty}">{$task->Nazev_fakulty}</a> - {$task->Podrobnosti}
+	{if $user->isInRole('admin')}
+		<span class="smazat"><a href="{link confirmForm:confirmDeleteDod! id=>$task->ID_DOD}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></span>
+		<span class="upravit"><a href="{link Dod:editdod id_fakulty=>$task->ID_fakulty, id_dod=>$task->ID_DOD}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit"></a></span>
+	{/if}
+	<br/><br/>
+{/foreach}
+</div>
+{/block}

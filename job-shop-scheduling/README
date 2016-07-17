@@ -1,0 +1,16 @@
+README for project jobshop
+Download latest galib from http://lancet.mit.edu/ga/ (247 at time of writing this file).
+
+Build jobshop executable:
+cd galib247
+make lib
+cd ..
+make
+
+Run with default parameters for j=6,m=6
+./jobshop jobs6x6.txt
+
+Visualise result:
+./plot.py
+
+That's it!

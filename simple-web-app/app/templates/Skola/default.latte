@@ -1,0 +1,70 @@
+{block title}Školy{/block}
+
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/styleList.css" type="text/css" />
+{/block}
+
+{block content}
+
+<h2>Seznam škol</h2>
+
+<div class="filtr">
+	{control filterForm}
+</div>
+	
+{if $user->isInRole('admin')}
+<div id="detailLinks" style="float:none">
+		<br/><br/>
+		<div class="pridat"><a href="{link Skola:addzamereni}"><img src="{$basePath}/images/icons/add24.png">Přidat zaměření</a></div>
+		<div class="pridat"><a href="{link Skola:addskola}"><img src="{$basePath}/images/icons/add24.png">Přidat školu</a></div>
+		<div class="pridat"><a href="{link Fakulta:addfakulta}"><img src="{$basePath}/images/icons/add24.png">Přidat fakultu</a></div>	
+</div>
+{/if}	
+
+<div id="accWrapper">
+    <div id="options">
+		<a href="javascript:parentAccordion.pr(1)">Rozbalit vše</a> | <a href="javascript:parentAccordion.pr(-1)">Sbalit vše</a>
+    </div>
+    <ul class="acc" id="acc">
+	{foreach $skoly as $skola}
+	<li>
+	<h3>
+		{$skola->Nazev_skoly}
+		{if $user->isInRole('admin')}
+			<span class="smazat"><a href="{link confirmForm:confirmDeleteSkola! nazev=> $skola->Nazev_skoly}"><img src="{$basePath}/images/icons/delete.png" alt="Smazat" title="Smazat!"></a></span>
+			<span class="upravit"><a href="{link Skola:editskola nazev_skoly=>$skola->Nazev_skoly}"><img src="{$basePath}/images/icons/edit.png" alt="Upravit" title="Upravit"></a></span>
+		{/if}
+	</h3>
+	<div class="acc-section">
+	    <div class="acc-content">
+		<div class="detail"><a href="{link Skola:detail $skola->Nazev_skoly}"><img src="{$basePath}/images/icons/detail24.png" alt="Detail" title="Detail">Detail školy</a></div>
+		<ul class="acc" id="nested">
+		    {foreach $fakulty as $fakulta}
+			{if $fakulta->Nazev_skoly == $skola->Nazev_skoly}
+			    <a href="{link Fakulta:detail $fakulta->ID_fakulty}">
+				<li>
+				    <h3>{$fakulta->Nazev_fakulty}</h3>
+				</li>
+			    </a>
+			{/if}
+		    {/foreach}
+		</ul>
+	    </div>
+	</div>
+	</li>
+	{/foreach}
+    </ul>
+</div>
+
+<script type="text/javascript" src="{$basePath}/js/TinyAccordion.js"></script>
+
+<script type="text/javascript">
+
+var parentAccordion=new TINY.accordion.slider("parentAccordion");
+parentAccordion.init("acc","h3",0,0);
+
+var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
+nestedAccordion.init("nested","h3",1,-1,"acc-selected");
+
+</script>
+{/block}

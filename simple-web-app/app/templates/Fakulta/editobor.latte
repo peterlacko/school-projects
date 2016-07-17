@@ -1,0 +1,39 @@
+{block title}{$detailFakulty->Nazev_fakulty}: Přidat obor{/block}
+
+{block content}
+{form editOborForm}
+<div class="form">
+    {control $form errors}
+    <div class="pair">
+	{label nazev_oboru /}
+	<div class="input">{input nazev_oboru}</div>
+    </div>
+    <div class="pair">
+	{label delka_studia /}
+	<div class="input">{input delka_studia}</div>
+    </div>
+    <div class="pair">
+	{label forma_studia /}
+	<div class="input">{input forma_studia}</div>
+    </div>
+    <div class="pair">
+	{label titul /}
+	<div class="input">{input titul}</div>
+    </div>
+    <div class="pair">
+	{label zakonceni /}
+	<div class="input">{input zakonceni}</div>
+    </div>
+    <div class="pair">
+	{label popis /}
+	<div class="input">{input popis}</div>
+    </div>
+    <br/>
+    <div class="pair">
+	<div class="input">{input addObor} {input cancel}</div>
+    </div>
+    <br/>
+    <div><i>Tučně označená pole jsou povinná</i></div>
+</div>
+{/form}
+{/block}

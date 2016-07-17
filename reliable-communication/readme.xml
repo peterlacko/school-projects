@@ -1,0 +1,24 @@
+<ipk-projekt-3>
+<autor>Peter Lacko</autor>
+<login>xlacko06@stud.fit.vutbr.cz</login>
+<datum>29.04.2012</datum>
+<soubory>
+<soubor jmeno="rdtserver.c" autor="Peter Lacko"/>
+<soubor jmeno="rdtserver.h" autor="Peter Lacko"/>
+<soubor jmeno="rdtclient.c" autor="Peter Lacko"/>
+<soubor jmeno="rdtclient.h" autor="Peter Lacko"/>
+<soubor jmeno="Makefile" autor="Peter Lacko"/>
+<soubor jmeno="b64_ntop.c" autor="IBM"/>
+<soubor jmeno="b64_pton.c" autor="IBM"/>
+</soubory>
+<protokol>
+    <?xml version="1.0"?>
+    <rdt-segment id="xlacko06\">
+	<header>
+	    <order>poradi_segmentu</order>
+	    <len>delka_dat</len>
+	</header>
+	<data>data_v_base64</data>
+    </rdt-segment>
+</protokol>
+</ipk-projekt-3>
